@@ -1,0 +1,265 @@
+/* Main css. Styles in this sheet are applied only to layout elements, wrappers,
+text and images.
+
+css reset, transitions/keyframes and scanline filters are all imported from
+separate style sheets. Separations of concerns is our friend. */
+
+/* Imports */
+
+@import "./scanlines.css";
+@import "./reset.css";
+@import "./fades.css";
+
+body {
+  overflow: hidden;
+  font-family: monospace, sans-serif;
+  width: 50vw;
+}
+
+/* Groups + layout elements */
+
+#frame {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  filter: contrast(180%) brightness(100%);
+  transform: translate(-50%, -50%) scale(2, 2);
+  cursor: default;
+}
+/* #frame-2 {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  transform: translate(-50%, -50%) scale(1.9, 1.44);
+  cursor: default;
+  opacity: 0;
+} */
+
+#frame-2 {
+  position: absolute;
+  width: 25%;
+  height: 25%;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  transform: translate(-50%, -50%) scale(3.8, 2.88);
+  cursor: default;
+  opacity: 0;
+}
+
+img {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1.9, 1.44);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 3s ease-in forwards;
+}
+
+canvas,
+header,
+main,
+footer,
+aside {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main,
+aside,
+footer,
+canvas {
+  width: 100%;
+  height: 100%;
+}
+
+footer,
+aside {
+  opacity: 0.85;
+  align-items: end;
+  cursor: default;
+}
+
+.resize {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  left: 50%;
+  top: 50%;
+  filter: contrast(180%) brightness(100%);
+  transform: translate(-50%, -50%) scale(2, 2);
+  cursor: default;
+  background-color: transparent;
+}
+
+#canvas {
+  opacity: 1;
+  background: linear-gradient(
+    #f0fcef,
+    #ffffff,
+    #ffffff,
+    #ffffff,
+    #ffffff,
+    #f3e8e8
+  );
+
+  /* transform: translate(50%, 0px); */
+
+  /* og 30 */
+}
+header {
+  z-index: 2;
+  width: 100%;
+  height: 30%;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 70%;
+}
+footer {
+  font-size: 7px;
+  bottom: 30px;
+}
+footer p {
+  font-size: 9px;
+  transition: 0.5s ease-in-out;
+}
+aside {
+  bottom: 95px;
+  transition: 0.5s ease-in-out;
+}
+
+/* Credits wrappers */
+
+.credits-left {
+  text-align: end;
+  margin-right: 0.5em;
+}
+.credits-right {
+  margin-left: 0.5em;
+}
+
+/* .credits-left p:first-child,
+.credits-right p:first-child {
+  margin-bottom: 10px;
+} */
+
+/* Text */
+
+h1,
+h2,
+button,
+p {
+  filter: blur(0.5px);
+}
+
+/* .half {
+  position: absolute;
+  width: 50vw;
+  height: 100vh;
+  background-color: red;
+  z-index: 2000;
+  opacity: 0.3;
+} */
+
+h1 {
+  transform: scale(1.1, 3);
+  font-family: "Times New Roman", Times, serif;
+  color: rgb(251, 242, 223);
+  text-shadow: 5px 0px 4px rgb(215, 111, 111);
+  font-style: italic;
+  opacity: 0;
+  font-size: clamp(25px, 2.7vw, 55px);
+  margin-top: 20px;
+  letter-spacing: 0px;
+}
+
+button {
+  transition: 0.2s ease-in-out;
+  opacity: 0.3;
+  position: absolute;
+  left: 50%;
+  top: 80%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  padding: 2px 8px 4px;
+  border: 1.5px solid black;
+  border-radius: 10px;
+  z-index: 5;
+  filter: blur(0.8px);
+}
+button:hover {
+  color: rgb(2, 253, 2);
+  border: 1.5px solid rgb(2, 253, 2);
+  opacity: 1;
+  cursor: grab !important;
+}
+button:active {
+  cursor: grabbing !important;
+  border: 1.5px solid rgb(2, 253, 2);
+  background-color: rgb(2, 253, 2);
+  color: white;
+}
+
+p {
+  font-size: 11px;
+}
+
+.cursor-delete {
+  cursor: none !important;
+}
+
+@media (max-height: 340px) {
+  aside p {
+    font-size: 8px;
+  }
+  aside {
+    bottom: 40px;
+  }
+  footer p {
+    font-size: 7px;
+  }
+  footer {
+    bottom: 20px;
+  }
+  button {
+    top: 55%;
+  }
+}
+
+@media (min-height: 341px) {
+  aside p {
+    font-size: 10px;
+  }
+  aside {
+    bottom: 60px;
+  }
+  button {
+    top: 55%;
+  }
+}
+
+@media (min-height: 451px) {
+  aside p {
+    font-size: 11px;
+  }
+  aside {
+    bottom: 95px;
+  }
+}
+
+.a-grab-cursor:hover {
+  cursor: none !important;
+}
