@@ -1,0 +1,21 @@
+/* Several HTML elements have a default rendering in browsers regards to
+different properties. Using this rule set or "reset" means that on browsers
+supporting the inherit value, for example, all such elements are rendered in
+copy text font, unless otherwise specified in a style sheet.
+
+The overall rationale is to reduce browser inconsistencies.
+
+All credit due to Eric Meyer's "Reset CSS"
+
+http://meyerweb.com/eric/tools/css/reset/
+v2.0 | 20110126
+License: none (public domain) */
+
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  vertical-align: baseline;
+  border: 0;
+  font-size: 100%;
+}

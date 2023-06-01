@@ -1,0 +1,122 @@
+/* An attempt at simulating the classic screen-door effect. The style sheet
+below is trying to create this by applying a psuedo element to body element.
+
+The psuedo element (::before) is creating several iterations of horizontal and
+vertical lines using linear gradients, and the repetitions is achieved by
+adjusting the background-size attribute. These vertical and horizontal lines
+are repeated very closely, on top of the body element.
+
+the other psuedo element is simulating the flickering effect found on
+old CRT monitors. Flicker occurs on CRTs when they're driven at a low refresh rate,
+allowing the brightness to drop for time intervals sufficiently long to be noticed
+by a human observer.
+
+By using @keyframes, this effect is achieved by applying
+a filter to the <body> element using this psuedo element (::after). This filter is
+varying in opacity somewhat randomly, and most importantly is varying in a
+frequency rate low enough to not reach the flicker fusion treshold and appear
+completely steady.
+
+All credit due to http://aleclownes.com/2017/02/01/crt-display.html
+
+*/
+
+body::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(18, 16, 16, 0.01);
+  z-index: 2;
+  pointer-events: none;
+  /* animation: crt 0.3s infinite; */
+}
+body::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0.2) 50%, rgba(0, 0, 0, 0.3) 50%),
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 0.14),
+      rgba(0, 255, 0, 0.14),
+      rgba(0, 0, 255, 0.14)
+    );
+  z-index: 2;
+  background-size: 100% 3px, 4px 100%;
+  pointer-events: none;
+  opacity: 0.2;
+}
+
+@keyframes crt {
+  0% {
+    opacity: 0.27861;
+  }
+  5% {
+    opacity: 0.34769;
+  }
+  10% {
+    opacity: 0.23604;
+  }
+  15% {
+    opacity: 0.90626;
+  }
+  20% {
+    opacity: 0.18128;
+  }
+  25% {
+    opacity: 0.83891;
+  }
+  30% {
+    opacity: 0.65583;
+  }
+  35% {
+    opacity: 0.67807;
+  }
+  40% {
+    opacity: 0.26559;
+  }
+  45% {
+    opacity: 0.84693;
+  }
+  50% {
+    opacity: 0.96019;
+  }
+  55% {
+    opacity: 0.08594;
+  }
+  60% {
+    opacity: 0.20313;
+  }
+  65% {
+    opacity: 0.71988;
+  }
+  70% {
+    opacity: 0.53455;
+  }
+  75% {
+    opacity: 0.37288;
+  }
+  80% {
+    opacity: 0.71428;
+  }
+  85% {
+    opacity: 0.70419;
+  }
+  90% {
+    opacity: 0.7003;
+  }
+  95% {
+    opacity: 0.36108;
+  }
+  100% {
+    opacity: 0.24387;
+  }
+}
